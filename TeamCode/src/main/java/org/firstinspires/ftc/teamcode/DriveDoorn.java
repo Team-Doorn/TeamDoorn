@@ -71,20 +71,22 @@ public class DriveDoorn extends LinearOpMode {
                 if (!(gamepad1.left_trigger > 0.1 || gamepad1.right_trigger > 0.1)) {
                     speed1 = ratio * (gamepad1.left_stick_x * Math.sin(-45) - gamepad1.left_stick_y * Math.cos(-45));
                     speed2 = ratio * (gamepad1.left_stick_x * Math.cos(-45) + gamepad1.left_stick_y * Math.sin(-45));
+                    linksachter.setPower(speed1 * -1);
+                    rechtsvoor.setPower(speed1 * -1);
+                    linksvoor.setPower(speed2);
+                    rechtsachter.setPower(speed2);
+                } else {
+                    if (gamepad1.left_trigger > gamepad1.right_trigger) {
+                        speed1 = ratio * (-gamepad1.left_trigger * Math.sin(-45) - 0 * Math.cos(-45));
+                        speed2 = ratio * (-gamepad1.left_trigger * Math.cos(-45) + 0 * Math.sin(-45));
+                    } else {
+                        speed1 = ratio * (gamepad1.right_trigger * Math.sin(-45) - 0 * Math.cos(-45));
+                        speed2 = ratio * (gamepad1.right_trigger * Math.cos(-45) + 0 * Math.sin(-45));
+                    }
                     linksachter.setPower(speed1);
                     rechtsvoor.setPower(speed1 * -1);
                     linksvoor.setPower(speed2);
                     rechtsachter.setPower(speed2 * -1);
-                } else {
-                    if (gamepad1.left_trigger > gamepad1.right_trigger) {
-                        speed1 = -1 * ratio * gamepad1.left_trigger;
-                    } else {
-                        speed1 = ratio * gamepad1.right_trigger;
-                    }
-                    linksachter.setPower(speed1);
-                    linksvoor.setPower(speed1);
-                    rechtsvoor.setPower(speed1);
-                    rechtsachter.setPower(speed1);
                 }
                 schouderlinksAsDcMotor.setPower(0.4 * gamepad2.left_stick_y);
                 schouderrechtsAsDcMotor.setPower(-0.4 * gamepad2.left_stick_y);
