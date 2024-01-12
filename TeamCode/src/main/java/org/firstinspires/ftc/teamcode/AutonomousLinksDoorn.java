@@ -5,8 +5,8 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@Autonomous(name = "Autonomous Doorn")
-public class AutonomousDoorn extends LinearOpMode {
+@Autonomous(name = "Naar links tuh tuh tuh tuh")
+public class AutonomousLinksDoorn extends LinearOpMode {
     private Servo linksAsServo;
     private Servo rechtsAsServo;
     private DcMotor linksachter;
@@ -39,22 +39,21 @@ public class AutonomousDoorn extends LinearOpMode {
         linksAsServo = hardwareMap.get(Servo.class, "links");
         rechtsAsServo = hardwareMap.get(Servo.class, "rechts");
 
-        ratio = 0.5;
+        ratio = 1;
         linksAsServo.scaleRange(0.3, 0.45);
         rechtsAsServo.scaleRange(0, 0.25);
 
         waitForStart();
         if (opModeIsActive()) {
             while (opModeIsActive()) {
-
-                speed1 = ratio * 1;
-                speed2 = ratio * -1;
-
+                float x = -1;
+                float y = 0;
+                speed1 = ratio * (x * Math.sin(-45) - y * Math.cos(-45));
+                speed2 = ratio * (x * Math.cos(-45) + y * Math.sin(-45));
                 linksachter.setPower(speed1);
                 rechtsvoor.setPower(speed1 * -1);
                 linksvoor.setPower(speed2);
                 rechtsachter.setPower(speed2 * -1);
-                sleep(250);
             }
         }
     }
