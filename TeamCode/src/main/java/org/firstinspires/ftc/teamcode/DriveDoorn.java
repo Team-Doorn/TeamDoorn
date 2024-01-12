@@ -69,8 +69,8 @@ public class DriveDoorn extends LinearOpMode {
                     }
                 }
                 if (!(gamepad1.left_trigger > 0.1 || gamepad1.right_trigger > 0.1)) {
-                    speed1 = ratio * (gamepad1.left_stick_x * Math.sin(-45) - gamepad1.left_stick_y * Math.cos(-45));
-                    speed2 = ratio * (gamepad1.left_stick_x * Math.cos(-45) + gamepad1.left_stick_y * Math.sin(-45));
+                    speed1 = ratio * (gamepad1.right_stick_x * Math.sin(-45) - gamepad1.left_stick_y * Math.cos(-45));
+                    speed2 = ratio * (gamepad1.right_stick_x * Math.cos(-45) + gamepad1.left_stick_y * Math.sin(-45));
                     linksachter.setPower(speed1 * -1);
                     rechtsvoor.setPower(speed1 * -1);
                     linksvoor.setPower(speed2);
